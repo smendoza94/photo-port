@@ -3,6 +3,7 @@ import React from "react";
 import "./App.css";
 import About from "./components/About";
 import Nav from "./components/Nav";
+import Gallery from "./components/Gallery";
 
 // React components follow the PascalCase naming convention.
 // Knowing this will help you quickly identify whether a
@@ -13,6 +14,7 @@ function App() {
     <div>
       <Nav></Nav>
       <main>
+        <Gallery></Gallery>
         <About></About>
       </main>
     </div>
