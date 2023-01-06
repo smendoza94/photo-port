@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { capitalizeFirstLetter } from "../../utils/helpers";
 
 // Hooks are JavaScript functions that follow two rules:
@@ -11,6 +11,10 @@ import { capitalizeFirstLetter } from "../../utils/helpers";
 // and rules, use Hooks towards the top of your React component.
 function Nav(props) {
   const { categories = [], setCurrentCategory, currentCategory } = props;
+
+  useEffect(() => {
+    document.title = capitalizeFirstLetter(currentCategory.name);
+  }, [currentCategory]);
 
   return (
     <header className="flex-row px-1">
