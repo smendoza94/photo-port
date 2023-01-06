@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { capitalizeFirstLetter } from "../../utils/helpers";
 
 // Hooks are JavaScript functions that follow two rules:
@@ -9,31 +9,16 @@ import { capitalizeFirstLetter } from "../../utils/helpers";
 // The second rule: "Only call Hooks at the top level". You cannot use hooks inside for loops,
 // nested functions within your React component, or conditionals. For organizational purposes
 // and rules, use Hooks towards the top of your React component.
-function Nav() {
-  const [categories] = useState([
-    {
-      name: "commercial",
-      description:
-        "Photos of grocery stores, food trucks, and other commercial projects",
-    },
-    { name: "portraits", description: "Portraits of people in my life" },
-    { name: "food", description: "Delicious delicacies" },
-    {
-      name: "landscape",
-      description: "Fields, farmhouses, waterfalls, and the beauty of nature",
-    },
-  ]);
-
-  const [currentCategory, setCurrentCategory] = useState(categories[0]);
+function Nav(props) {
+  const { categories = [], setCurrentCategory, currentCategory } = props;
 
   return (
     <header className="flex-row px-1">
       <h2>
         <a data-testid="link" href="/">
           <span role="img" aria-label="camera">
-            {" "}
             📸
-          </span>{" "}
+          </span>
           Oh Snap!
         </a>
       </h2>
