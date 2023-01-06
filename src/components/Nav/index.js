@@ -12,10 +12,12 @@ import { capitalizeFirstLetter } from "../../utils/helpers";
 function Nav(props) {
   const { categories = [], setCurrentCategory, currentCategory } = props;
 
+  // update the tab on the browser to reflect the user's category selection
   useEffect(() => {
     document.title = capitalizeFirstLetter(currentCategory.name);
   }, [currentCategory]);
 
+  // nav component
   return (
     <header className="flex-row px-1">
       <h2>
