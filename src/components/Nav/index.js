@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
-const Nav = () => {
-  const categories = [
+// Hooks are JavaScript functions that follow two rules:
+
+// The first rule: "Only call Hooks from React functions." Use Hooks to affect the state of
+// a component in some way and trigger the component to render.
+
+// The second rule: "Only call Hooks at the top level". You cannot use hooks inside for loops,
+// nested functions within your React component, or conditionals. For organizational purposes
+// and rules, use Hooks towards the top of your React component.
+function Nav() {
+  const [categories] = useState([
     {
       name: "commercial",
       description:
@@ -13,15 +22,16 @@ const Nav = () => {
       name: "landscape",
       description: "Fields, farmhouses, waterfalls, and the beauty of nature",
     },
-  ];
-  function categorySelected(name) {
-    console.log(`${name} clicked`);
-  }
+  ]);
+
+  const [currentCategory, setCurrentCategory] = useState(categories[0]);
+
   return (
-    <header>
+    <header className="flex-row px-1">
       <h2>
         <a data-testid="link" href="/">
           <span role="img" aria-label="camera">
+            {" "}
             📸
           </span>{" "}
           Oh Snap!
@@ -38,9 +48,20 @@ const Nav = () => {
             <span>Contact</span>
           </li>
           {categories.map((category) => (
-            <li className="mx-1" key={category.name}>
-              <span onClick={categorySelected(category.name)}>
-                {category.name}
+            // currentCategory.name === category.name will get evaluated when true,
+            // then the second bit of the short circuit, navActive, will be returned.
+            <li
+              className={`mx-1 ${
+                currentCategory.name === category.name && "navActive"
+              }`}
+              key={category.name}
+            >
+              <span
+                onClick={() => {
+                  setCurrentCategory(category);
+                }}
+              >
+                {capitalizeFirstLetter(category.name)}
               </span>
             </li>
           ))}
@@ -48,6 +69,6 @@ const Nav = () => {
       </nav>
     </header>
   );
-};
+}
 
 export default Nav;
