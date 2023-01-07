@@ -11,6 +11,7 @@ import reportWebVitals from "./reportWebVitals";
 //   </React.StrictMode>
 // );
 
+// a single-page application, or SPA
 ReactDOM.render(
   <React.StrictMode>
     <App />
