@@ -45,7 +45,7 @@ function Nav(props) {
               About Me
             </a>
           </li>
-          <li>
+          <li className={`mx-2 ${contactSelected && "navActive"}`}>
             <span onClick={() => setContactSelected(true)}>Contact</span>
           </li>
           {categories.map((category) => (
@@ -53,7 +53,9 @@ function Nav(props) {
             // then the second bit of the short circuit, navActive, will be returned.
             <li
               className={`mx-1 ${
-                currentCategory.name === category.name && "navActive"
+                currentCategory.name === category.name &&
+                !contactSelected &&
+                "navActive"
               }`}
               key={category.name}
             >
