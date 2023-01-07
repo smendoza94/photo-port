@@ -60,7 +60,7 @@ function ContactForm() {
             type="text"
             name="name"
             defaultValue={name}
-            onChange={handleChange}
+            onBlur={handleChange}
           />
         </div>
         <div>
@@ -69,7 +69,7 @@ function ContactForm() {
             type="email"
             name="email"
             defaultValue={email}
-            onChange={handleChange}
+            onBlur={handleChange}
           />
         </div>
         <div>
@@ -78,9 +78,15 @@ function ContactForm() {
             name="message"
             rows="5"
             defaultValue={message}
-            onChange={handleChange}
+            onBlur={handleChange}
           />
         </div>
+        {/* if errorMessage render this message JSX message*/}
+        {errorMessage && (
+          <div>
+            <p className="error-text">{errorMessage}</p>
+          </div>
+        )}
         <button type="submit">Submit</button>
       </form>
     </section>
