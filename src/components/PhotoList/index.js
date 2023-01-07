@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Modal from "../Modal";
 
 const PhotoList = ({ category }) => {
   const [photos] = useState([
@@ -118,6 +119,14 @@ const PhotoList = ({ category }) => {
     },
   ]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [currentPhoto, setCurrectPhoto] = useState();
+  function toggleModal(image, i) {
+    setCurrectPhoto({ ...image, index: i });
+    setIsModalOpen(true);
+  }
+
   // Go through each photo in the photos array, find every photo that matches the category
   // that was selected by the user. If a photo matches the condition, return in an array
   // and assign to currentPhotos.
@@ -125,14 +134,15 @@ const PhotoList = ({ category }) => {
 
   return (
     <div>
+      {isModalOpen && <Modal currentPhoto={currentPhoto} />}
       <div className="flex-row">
         {/* // Map the currentPhotos array to render each photo that matches the category selected 
       // by the user. */}
         {currentPhotos.map((image, i) => (
           <img
             // The default property is where the image has been saved. To render the
-            // image, the default property must be invoked.
-            src={require(`../../assets/small/${category}/${i}.jpg`).default}
+            // image, the default property must be invoked. // no it doesnt!
+            src={require(`../../assets/small/${category}/${i}.jpg`)}
             // The alt attribute is used for accessibility user-assistance devices,
             // such as screen readers, so the image's name was assigned.
             alt={image.name}
@@ -141,6 +151,7 @@ const PhotoList = ({ category }) => {
             // value must be a unique string. The absence of this unique key value
             // will cause an error message.
             key={image.name}
+            onClick={() => toggleModal(image, i)}
           />
         ))}
       </div>
