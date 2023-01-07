@@ -8,6 +8,8 @@ const categories = [
 ];
 const mockCurrentCategory = jest.fn();
 const mockSetCurrentCategory = jest.fn();
+const mockCurrentSelected = jest.fn();
+const mockSetCurrentSelected = jest.fn();
 
 afterEach(cleanup);
 
@@ -19,6 +21,8 @@ describe("Nav component", () => {
         categories={categories}
         setCurrentCategory={mockSetCurrentCategory}
         currentCategory={mockCurrentCategory}
+        contactSelected={mockCurrentSelected}
+        setContactSelected={mockSetCurrentSelected}
       />
     );
   });
@@ -29,6 +33,8 @@ describe("Nav component", () => {
         categories={categories}
         setCurrentCategory={mockSetCurrentCategory}
         currentCategory={mockCurrentCategory}
+        contactSelected={mockCurrentSelected}
+        setContactSelected={mockSetCurrentSelected}
       />
     );
     // assert value camparison
@@ -44,6 +50,8 @@ describe("emoji is visible", () => {
         categories={categories}
         setCurrentCategory={mockSetCurrentCategory}
         currentCategory={mockCurrentCategory}
+        contactSelected={mockCurrentSelected}
+        setContactSelected={mockSetCurrentSelected}
       />
     );
     // assert
@@ -60,6 +68,8 @@ describe("links are visible", () => {
         categories={categories}
         setCurrentCategory={mockSetCurrentCategory}
         currentCategory={mockCurrentCategory}
+        contactSelected={mockCurrentSelected}
+        setContactSelected={mockSetCurrentSelected}
       />
     );
     // assert
