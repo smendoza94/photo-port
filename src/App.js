@@ -11,6 +11,10 @@ import ContactForm from "./components/Contact";
 // function is a component or just a regular function.
 
 function App() {
+  // We set the initial value of contactSelected to false to prevent the contact
+  // form from showing when a user initially navigates to the homepage.
+  const [contactSelected, setContactSelected] = useState(false);
+
   // Lift state to App.js, pass the currentCategory and Setter through to Nav,
   // and move categories up to the App level.
   const [categories] = useState([
@@ -34,11 +38,21 @@ function App() {
         categories={categories}
         setCurrentCategory={setCurrentCategory}
         currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        <ContactForm></ContactForm>
-        <Gallery currentCategory={currentCategory}></Gallery>
-        <About></About>
+        {/* The shorthand condition is called a ternary operator, identified with the ? and : symbols. */}
+        {/* IF contact is not selected THEN show Gallery & About ELSE show Contact form*/}
+        {!contactSelected ? (
+          // React fragments—a <> shorthand abbreviation for <React.Fragment></React.Fragment>
+          <>
+            <Gallery currentCategory={currentCategory}></Gallery>
+            <About></About>
+          </>
+        ) : (
+          <ContactForm></ContactForm>
+        )}
       </main>
     </div>
   );

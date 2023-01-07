@@ -10,7 +10,13 @@ import { capitalizeFirstLetter } from "../../utils/helpers";
 // nested functions within your React component, or conditionals. For organizational purposes
 // and rules, use Hooks towards the top of your React component.
 function Nav(props) {
-  const { categories = [], setCurrentCategory, currentCategory } = props;
+  const {
+    categories = [],
+    setCurrentCategory,
+    currentCategory,
+    contactSelected,
+    setContactSelected,
+  } = props;
 
   // update the tab on the browser to reflect the user's category selection
   useEffect(() => {
@@ -31,12 +37,16 @@ function Nav(props) {
       <nav>
         <ul className="flex-row">
           <li className="mx-2">
-            <a data-testid="about" href="#about">
+            <a
+              data-testid="about"
+              href="#about"
+              onClick={() => setContactSelected(false)}
+            >
               About Me
             </a>
           </li>
           <li>
-            <span>Contact</span>
+            <span onClick={() => setContactSelected(true)}>Contact</span>
           </li>
           {categories.map((category) => (
             // currentCategory.name === category.name will get evaluated when true,
@@ -50,6 +60,7 @@ function Nav(props) {
               <span
                 onClick={() => {
                   setCurrentCategory(category);
+                  setContactSelected(false);
                 }}
               >
                 {capitalizeFirstLetter(category.name)}
